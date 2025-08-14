@@ -1,5 +1,5 @@
 
-import { Post } from './Post'
+import { Post } from './components/Post/Post'
 import { Header } from './components/Header/Header'
 import "./global.css"
 import styles from "../src/App.module.css"
@@ -10,15 +10,14 @@ function App() {
   return (
     <div>
       <Header/>
-      
-
       <div className = {styles.wrapper}>
-
       <Sidebar/>
-        <main>
-      <Post author = "Gustavo" content = "Novo post"  />
-      <Post author = "Pedro" content = "Novo post 2"  />
-        </main>
+      <main>
+        <Post/>
+        <Post/>
+
+      
+      </main>
 
       </div>
 
