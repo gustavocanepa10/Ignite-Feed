@@ -19,13 +19,7 @@
     align-items: center;
 }
 
-.authorInfo img {
-    width: 5rem;
-    height: 5rem;
-    border-radius: 8px;
-    border: 4px solid var(--gray-800);
-    outline: 2px solid var(--green-500);
-}
+
 .authorInfo {
     display: flex;
     gap: 1rem;
@@ -58,7 +52,7 @@
     width: 100%;
     margin-top: 1.5rem;
     padding-top: 1.5rem;
-    border-top: 1px solid var(--gray-600);
+    border-top: 2px solid var(--gray-600);
  
     strong {
         line-height: 1.6;
@@ -108,5 +102,9 @@
 
 .commentForm footer button[type="submit"]:hover {
     background: var(--green-300);
+}
+
+.commentList {
+    margin-top: 1rem;
 }
 
