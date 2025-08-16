@@ -1,38 +1,48 @@
 import styles from "./Post.module.css"
 import { Comment } from "../Comment/Comment"
 import { Avatar } from "../Avatar/Avatar"
+import {format, formatDistanceToNow} from "date-fns"
+import ptBR from "date-fns/locale/pt-BR"
 
 
-export function Post({post}) {
+export function Post({author, hasComment, publishedAt}) {
+
+    const publishedFormatted = format(publishedAt, "d 'de' LLLL 'às' HH:mm:'h' ", {
+        locale : ptBR
+    })
+
+    const publishedDateRelative = formatDistanceToNow(publishedAt, {
+        locale : ptBR,
+        addSuffix : true
+    })
     
     return (
-        <article className= {styles.post}>
+        <article className= {styles.author}>
             <header className={styles.header}>    
             <div className={styles.authorInfo}>
 
-                <Avatar src={post.author.avatarUrl}/>
+                <Avatar src={author.avatarUrl}/>
                 <div className={styles.info}>
                 <strong>
-                   {post.author.name}
+                   {author.name}
                 </strong>
 
                 <span>
-                   {post.author.role}
+                   {author.role}
                 </span>
 
                 </div>
                 
             </div>
 
-            <time title="11 de agosto ás 08:13" datetime="2025-08-11">Publicado há 1h</time>
+            <time title={publishedFormatted} dateTime={publishedAt.toISOString()}>{publishedDateRelative}</time>
 
             </header>
 
 
-
-            <div className= {styles.content}>
-
-            <p>Fala galera 😁</p>
+             <div className= {styles.content}>
+            
+            <p>Fala galera</p>
 
             <p>Acabei de subir um novo projeto no meu portfólio feito no NLW da Rocketseat</p>
 
@@ -47,6 +57,7 @@ export function Post({post}) {
 
 
             </div>
+            
 
         <form className= {styles.commentForm}>
             <strong>
@@ -60,7 +71,7 @@ export function Post({post}) {
         </form>
 
 
-        {post.hasComment && <div className={styles.commentList}>
+        {hasComment && <div className={styles.commentList}>
             <Comment/>
             
 
