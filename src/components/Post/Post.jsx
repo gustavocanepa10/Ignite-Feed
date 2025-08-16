@@ -3,21 +3,21 @@ import { Comment } from "../Comment/Comment"
 import { Avatar } from "../Avatar/Avatar"
 
 
-export function Post() {
+export function Post({post}) {
     
     return (
         <article className= {styles.post}>
             <header className={styles.header}>    
             <div className={styles.authorInfo}>
 
-                <Avatar src="https://github.com/diego3g.png"/>
+                <Avatar src={post.author.avatarUrl}/>
                 <div className={styles.info}>
                 <strong>
-                    Diego Fernandes
+                   {post.author.name}
                 </strong>
 
                 <span>
-                    Web Developer
+                   {post.author.role}
                 </span>
 
                 </div>
@@ -59,11 +59,15 @@ export function Post() {
            
         </form>
 
-        <div className={styles.commentList}>
+
+        {post.hasComment && <div className={styles.commentList}>
             <Comment/>
             
 
-        </div>
+        </div> }
+          
+        
+        
         
             
            
