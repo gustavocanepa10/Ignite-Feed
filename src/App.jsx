@@ -18,7 +18,7 @@ const posts = [
       { type: "paragraph", text: "Confiram!" },
       { type: "link", text: "https://github.com/gustavocanepa10" }
     ],
-    publishedAt: new Date("2025-08-11 08:13:00"),
+    publishedAt: new Date("2025-08-11T08:13:00"),
     hasComment: false
 
   },
@@ -34,7 +34,7 @@ const posts = [
       { type: "paragraph", text: "Estou estudando React e fiz esse projeto de um blog para praticar." },
       { type: "link", text: "https://github.com/gustavocanepa10/Encurtador-Back" }
     ],
-    publishedAt: new Date("2025-08-12 14:20:00"),
+    publishedAt: new Date("2025-08-12T14:20:00"),
     hasComment: true
    
   }
@@ -48,7 +48,15 @@ function App() {
       <div className = {styles.wrapper}>
       <Sidebar/>
       <main>
-        {posts.map((post) => <Post key={post.id} published = {post.publishedAt} hasComment = {post.hasComment} content = {post.content}  author = {post.author}/>)}
+        {posts.map((post) => {
+          return (
+          <Post 
+        key={post.id} 
+        published = {post.publishedAt} 
+        hasComment = {post.hasComment} 
+        content = {post.content}  
+        author = {post.author}/>)
+        })}
     
         
 

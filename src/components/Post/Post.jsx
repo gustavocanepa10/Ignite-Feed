@@ -3,21 +3,39 @@ import { Comment } from "../Comment/Comment"
 import { Avatar } from "../Avatar/Avatar"
 import {format, formatDistanceToNow} from "date-fns"
 import ptBR from "date-fns/locale/pt-BR"
+import { useState } from "react"
 
 
-export function Post({author, hasComment, publishedAt}) {
+export function Post({author, published, content}) {
 
-    const publishedFormatted = format(publishedAt, "d 'de' LLLL 'às' HH:mm:'h' ", {
+
+    const [comments, setComments] = useState([])
+
+    const [commentText, setCommentText] = useState("")
+
+    function handleSubmit(event) {
+        event.preventDefault()
+
+
+       
+
+        setComments([...comments, commentText])
+        setCommentText("")
+    }
+
+    
+
+    const publishedFormatted = format(published, "d 'de' LLLL 'às' HH:mm'h'", {
         locale : ptBR
     })
 
-    const publishedDateRelative = formatDistanceToNow(publishedAt, {
+    const publishedDateRelative = formatDistanceToNow(published, {
         locale : ptBR,
         addSuffix : true
     })
     
     return (
-        <article className= {styles.author}>
+        <article className= {styles.post}>
             <header className={styles.header}>    
             <div className={styles.authorInfo}>
 
@@ -35,23 +53,25 @@ export function Post({author, hasComment, publishedAt}) {
                 
             </div>
 
-            <time title={publishedFormatted} dateTime={publishedAt.toISOString()}>{publishedDateRelative}</time>
+            <time title={publishedFormatted} dateTime={published.toISOString()}>{publishedDateRelative}</time>
 
             </header>
 
 
              <div className= {styles.content}>
+                {content.map(line => {
+                    if (line.type === 'paragraph') {
+                        return <p key={line.text}>
+                            {line.text}
+                        </p>
+                    } else if (line.type === 'link') {
+                        return <p key={line.text}><a href="">{line.text}</a></p>
+                    }
+                })}
+
+
             
-            <p>Fala galera</p>
-
-            <p>Acabei de subir um novo projeto no meu portfólio feito no NLW da Rocketseat</p>
-
-            <p>Confiram!</p>
-
-            <p>
-                <a target="_blank" href="https://github.com/gustavocanepa10">https://github.com/gustavocanepa10</a>
-            </p>
-
+            
 
 
 
@@ -59,11 +79,11 @@ export function Post({author, hasComment, publishedAt}) {
             </div>
             
 
-        <form className= {styles.commentForm}>
+        <form onSubmit={handleSubmit} className= {styles.commentForm}>
             <strong>
                 Deixe seu feedback
             </strong>
-            <textarea placeholder="Deixe seu comentário"/>
+            <textarea value={commentText}  onChange={(e) => setCommentText(e.target.value)}  placeholder="Deixe seu comentário"/>
             <footer>
                  <button  type="submit">Publicar</button>
             </footer>
@@ -71,11 +91,12 @@ export function Post({author, hasComment, publishedAt}) {
         </form>
 
 
-        {hasComment && <div className={styles.commentList}>
-            <Comment/>
+         <div className={styles.commentList}>
+            {comments.map((comment) => <Comment key={comment} content = {comment} />)}
+            
             
 
-        </div> }
+        </div> 
           
         
         
