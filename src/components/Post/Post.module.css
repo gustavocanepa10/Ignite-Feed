@@ -89,19 +89,14 @@
 
 }
 
-.commentForm footer {
-    visibility: hidden;
-    max-height: 0;
+
+.commentForm footer button:disabled {
+    opacity: 0.8;
+    cursor: not-allowed;
 }
 
-.commentForm:focus-within footer {
-    visibility: visible;
-    max-height: none;
-
-}
-
-.commentForm footer button[type="submit"]:hover {
-    background: var(--green-300);
+.commentForm footer button:not(:disabled) {
+    background: var(--green-500);
 }
 
 .commentList {

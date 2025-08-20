@@ -11,7 +11,7 @@ export function Post({author, published, content}) {
 
     const [comments, setComments] = useState([])
 
-    const [commentText, setCommentText] = useState("")
+    const [commentName, setCommentName] = useState("")
 
     function handleSubmit(event) {
         event.preventDefault()
@@ -19,9 +19,23 @@ export function Post({author, published, content}) {
 
        
 
-        setComments([...comments, commentText])
-        setCommentText("")
+        setComments([...comments, commentName])
+        setCommentName("")
     }
+
+
+    function handleDeleteComment(commentID) {
+
+        setComments(prevComments => prevComments.filter(comment => comment.id !== commentID ))
+
+    }
+
+    function handleNewCommentName() {
+        event.target.setCustomValidity('');
+        setCommentName(event.target.value);
+    }
+
+    
 
     
 
@@ -34,6 +48,9 @@ export function Post({author, published, content}) {
         addSuffix : true
     })
     
+
+    const isCommentEmpty = commentName.length === 0
+
     return (
         <article className= {styles.post}>
             <header className={styles.header}>    
@@ -83,16 +100,31 @@ export function Post({author, published, content}) {
             <strong>
                 Deixe seu feedback
             </strong>
-            <textarea value={commentText}  onChange={(e) => setCommentText(e.target.value)}  placeholder="Deixe seu comentário"/>
+            <textarea 
+            required 
+            value={commentName}  
+            onChange={handleNewCommentName}  
+            placeholder="Deixe seu comentário"
+            
+            
+            />
+            
             <footer>
-                 <button  type="submit">Publicar</button>
+                 <button 
+                 disabled = {isCommentEmpty}  
+                 type="submit">Publicar</button>
             </footer>
            
         </form>
 
 
          <div className={styles.commentList}>
-            {comments.map((comment) => <Comment key={comment} content = {comment} />)}
+            {comments.map(comment => {
+                return (
+                    <Comment key={comment} onDeleteComment = {handleDeleteComment} author = {author}  comment = {comment}  />)}
+
+            )
+        }
             
             
 
