@@ -1,12 +1,34 @@
-# React + Vite
+Ignite-Feed 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicação de feed (posts, comentários, likes) desenvolvida no contexto do módulo Fundamentos do ReactJS da Rocketseat.
+O objetivo é praticar conceitos essenciais de React, como componentização, estado, imutabilidade, hooks, bem como manipulação de datas com uma biblioteca especializada.
 
-Currently, two official plugins are available:
+✨ Funcionalidades
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Exibição de uma lista de posts com autor, conteúdo e data de publicação
 
-## Expanding the ESLint configuration
+Adicionar comentário em um post
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Deletar comentário de um post
+
+(Opcional) Curtir posts
+
+Formatação de datas (absoluta e relativa)
+
+Interface responsiva para diferentes tamanhos de tela
+
+🛠️ Tecnologias utilizadas
+
+React
+
+JavaScript
+
+Vite como bundler / servidor de desenvolvimento
+
+CSS / módulos CSS / estilização modular
+
+date-fns ou outra biblioteca para formatação de datas
+
+Ícones (ex: Phosphor Icons ou similar)
+
+ESLint / regras de lint / configuração de qualidade de código
